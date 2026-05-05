@@ -1,11 +1,16 @@
-﻿namespace JoliPet.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace JoliPet.Models;
 
 public class User
 {
     public int Id { get; set; }
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    [MaxLength(50)]
+    public required string Username { get; set; }
+    [MaxLength(50)]
+    public required string Email { get; set; }
+    [MaxLength(260)]
+    public required string Password { get; set; }
     public DateTime JoinedDate { get; set; }
     
     public virtual ICollection<Pet> Pets { get; set; } = new List<Pet>();
