@@ -28,5 +28,21 @@ public class PetsController : ControllerBase
         
         return Ok(types);
     }
+
+    [HttpPost("{id}/abandon")]
+    public async Task<IActionResult> AbandonPet([FromRoute] int id)
+    {
+        var pet = await _context.Pets.FindAsync(id);
+
+        if (pet == null)
+        {
+            return NotFound(new { message = "Pet not found" });
+        }
+
+        pet.Status = 0;
+        await _context.SaveChangesAsync();
+        
+        return NoContent();
+    }
     
 }

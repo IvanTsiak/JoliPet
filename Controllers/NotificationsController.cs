@@ -41,7 +41,7 @@ public class NotificationsController : ControllerBase
 
         if (notification == null)
         {
-            return NotFound(new { message = "Not found" });
+            return NotFound(new { message = "Notification not found" });
         }
 
         notification.IsRead = true;
