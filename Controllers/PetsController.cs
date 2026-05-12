@@ -1,5 +1,6 @@
 ﻿using JoliPet.DTOs;
 using JoliPet.Models;
+using JoliPet.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,7 +40,14 @@ public class PetsController : ControllerBase
             return NotFound(new { message = "Pet not found" });
         }
 
-        pet.Status = 0;
+        if (pet.Status == Constants.StatusDead)
+        {
+            return BadRequest(new { message = "Pet is dead" });
+        }
+
+        pet.Status = Constants.StatusDead;
+        pet.LastInteractionAt = DateTime.UtcNow;
+        
         await _context.SaveChangesAsync();
         
         return NoContent();

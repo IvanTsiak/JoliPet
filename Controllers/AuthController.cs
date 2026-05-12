@@ -1,5 +1,6 @@
 ﻿using JoliPet.DTOs;
 using JoliPet.Models;
+using JoliPet.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,8 +23,8 @@ public class AuthController : ControllerBase
         var petTypesCount = await _context.PetTypes.CountAsync();
         var petTypesName = await _context.PetTypes.Select(p => p.Name).ToListAsync();
         var userCount = await _context.Users.CountAsync();
-        var alivePets = await _context.Pets.Where(p => p.Status == 1).CountAsync();
-        var deadPets = await _context.Pets.Where(p => p.Status == 0).CountAsync();
+        var alivePets = await _context.Pets.Where(p => p.Status == Constants.StatusAlive).CountAsync();
+        var deadPets = await _context.Pets.Where(p => p.Status == Constants.StatusDead).CountAsync();
 
         var result = new GuestInfoDto
         {

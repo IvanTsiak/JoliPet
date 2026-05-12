@@ -2,6 +2,7 @@
 using JoliPet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using JoliPet.Shared;
 
 namespace JoliPet.Controllers;
 
@@ -22,7 +23,7 @@ public class CemeteryController : ControllerBase
         var diedPets = await _context.Pets
             .Include(p => p.User)
             .Include(p => p.PetType)
-            .Where(p => p.Status == 0)
+            .Where(p => p.Status == Constants.StatusDead)
             .Select(p => new CemeteryDto
             {
                 Id = p.Id,
