@@ -1,6 +1,6 @@
 @JoliPet_HostAddress = http://localhost:5007
 
-GET {{JoliPet_HostAddress}}/weatherforecast/
+GET {{JoliPet_HostAddress}}/api/pets/my
 Accept: application/json
 
 ###

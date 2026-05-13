@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
+using JoliPet.Shared;
 
 namespace JoliPet.Models;
 
@@ -18,4 +20,17 @@ public class Pet
     
     public virtual PetType PetType { get; set; }
     public virtual User User { get; set; }
+
+
+    public void ApplyMoodChange(double newMood)
+    {
+        Mood = Math.Max(Constants.MinMood, (int)newMood);
+        
+        LastInteractionAt = DateTime.UtcNow;
+
+        if (Mood <= 0)
+        {
+            Status = Constants.StatusDead;
+        }
+    }
 }
