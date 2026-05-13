@@ -67,6 +67,42 @@ public class PetsController : ControllerBase
         return Ok(result);
     }
 
+    public async Task<IActionResult> CreatePet([FromBody] CreatePetDto petDto)
+    {
+        var userId = _currentUser.GetCurrentUserId();
+
+        if (_context.Pets.Any(p => p.UserId == userId && p.Status == Constants.StatusAlive))
+        {
+            return BadRequest(new { message = "You already have a pet" });
+        }
+        
+        var petType = await _context.PetTypes.FindAsync(petDto.TypeId);
+
+        if (petType == null)
+        {
+            return NotFound(new { message = "Pet type not found" });
+        }
+
+        var newPet = new Pet
+        {
+            UserId = userId,
+            Name = petDto.Name,
+            PetTypeId = petDto.TypeId,
+            
+            Experience = 0,
+            Level = 0,
+            Mood = (int)petType.BaseEquilibrium,
+            Status = Constants.StatusAlive,
+            
+            LastInteractionAt = DateTime.UtcNow,
+        };
+        
+        _context.Pets.Add(newPet);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
     [HttpPost("{id}/abandon")]
     public async Task<IActionResult> AbandonPet([FromRoute] int id)
     {

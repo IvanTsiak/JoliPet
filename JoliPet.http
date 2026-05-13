@@ -1,6 +1,9 @@
 @JoliPet_HostAddress = http://localhost:5007
 
-GET {{JoliPet_HostAddress}}/api/pets/my
-Accept: application/json
+POST {{JoliPet_HostAddress}}/api/pets
+Content-Type: application/json
 
-###
+{
+    "typeId": 1,
+    "name": "Бусінка"
+}
