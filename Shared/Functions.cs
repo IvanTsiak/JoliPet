@@ -28,4 +28,21 @@ public static class Functions
         
         return Math.Max(Constants.MinMood, finalMood);
     }
+
+    public static double CalculateWordImpact(int totalWeight, double volatility, double emotionalInertia)
+    {
+        if (totalWeight == 0)
+        {
+            return 0;
+        }
+
+        if (emotionalInertia == 0)
+        {
+            emotionalInertia = 1;
+        }
+
+        double impact = (volatility / emotionalInertia) * Math.Log(Math.Abs(totalWeight) + 1);
+
+        return Math.Sign(totalWeight) * impact;
+    }
 } 

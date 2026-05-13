@@ -1,9 +1,8 @@
 @JoliPet_HostAddress = http://localhost:5007
 
-POST {{JoliPet_HostAddress}}/api/pets
+POST {{JoliPet_HostAddress}}/api/interactions/2/talk
 Content-Type: application/json
 
 {
-    "typeId": 1,
-    "name": "Бусінка"
+  "message": "Всевишній Господь христовий"
 }

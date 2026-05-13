@@ -1,6 +1,61 @@
-﻿namespace JoliPet.Controllers;
+﻿using JoliPet.DTOs;
+using JoliPet.Models;
+using JoliPet.Services;
+using JoliPet.Shared;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-public class InteractionsController
+namespace JoliPet.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class InteractionsController : ControllerBase
 {
+    private readonly JoliPetContext _context;
+    private readonly ICurrentUserService _currentUser;
+    private readonly IMessageAnalyzerService _messageAnalyzer;
+
+    public InteractionsController(JoliPetContext context, ICurrentUserService currentUser,
+        IMessageAnalyzerService messageAnalyzer)
+    {
+        _context = context;
+        _currentUser = currentUser;
+        _messageAnalyzer = messageAnalyzer;
+    }
     
+    [HttpPost("{id}/talk")]
+    public async Task<ActionResult<MyPetDto>> TalkToPet([FromRoute] int id, [FromBody] MessageDto m)
+    {
+        var userId = _currentUser.GetCurrentUserId();
+
+        var pet = await _context.Pets
+            .Include(pet => pet.PetType)
+            .FirstOrDefaultAsync(p => p.Id == id && p.UserId == userId && p.Status == Constants.StatusAlive);
+
+        if (pet == null)
+        {
+            return NotFound();
+        }
+        
+        var minutesPassed = (DateTime.UtcNow - pet.LastInteractionAt).TotalMinutes;
+        double decayedMood = Functions.CalculateCurrentMood(
+            pet.Mood, minutesPassed, pet.PetType.BaseEquilibrium, 
+            pet.PetType.DecayConstant, pet.PetType.CriticalThreshold, pet.PetType.CriticalDecayRate);
+
+        var totalWeight = await _messageAnalyzer.CalculateMessageWeightAsync(m.Message);
+        var moodChange =
+            Functions.CalculateWordImpact(totalWeight, pet.PetType.Volatility, pet.PetType.EmotionalInertia);
+        
+        pet.ApplyMoodChange(decayedMood + moodChange);
+        await  _context.SaveChangesAsync();
+
+        var result = new MyPetDto
+        {
+            Id = pet.Id,
+            Name = pet.Name,
+            Mood = pet.Mood,
+        };
+        
+        return Ok(result);
+    }
 }
