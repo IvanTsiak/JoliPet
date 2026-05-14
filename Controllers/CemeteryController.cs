@@ -21,8 +21,6 @@ public class CemeteryController : ControllerBase
     public async Task<ActionResult<IEnumerable<CemeteryDto>>> GetCemeteries()
     {
         var diedPets = await _context.Pets
-            .Include(p => p.User)
-            .Include(p => p.PetType)
             .Where(p => p.Status == Constants.StatusDead)
             .Select(p => new CemeteryDto
             {

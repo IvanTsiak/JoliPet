@@ -10,4 +10,6 @@ public static class Constants
 
     public const int StatusAlive = 1;
     public const int StatusDead = 0;
+
+    public const int MaxDifferenceBetweenLevel = 5;
 }
