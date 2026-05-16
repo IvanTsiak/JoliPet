@@ -13,11 +13,13 @@ public class BattlesController : ControllerBase
 {
     private readonly JoliPetContext _context;
     private readonly ICurrentUserService _currentUser;
+    private readonly IBattleService _battleService;
     
-    public  BattlesController(JoliPetContext context,  ICurrentUserService currentUser)
+    public  BattlesController(JoliPetContext context,  ICurrentUserService currentUser,  IBattleService battleService)
     {
         _context = context;
         _currentUser = currentUser;
+        _battleService = battleService;
     }
 
     [HttpGet("targets")]
@@ -48,5 +50,21 @@ public class BattlesController : ControllerBase
             .ToListAsync();
         
         return Ok(targets);
+    }
+
+    [HttpPost("{id}/attack")]
+    public async Task<ActionResult<BattleResultDto>> Attack([FromRoute] int defenderPetId)
+    {
+        try
+        {
+            var userId = _currentUser.GetCurrentUserId();
+            var result = await _battleService.ExecuteBattleAsync(userId, defenderPetId);
+
+            return Ok(result);
+        }
+        catch (InvalidOperationException)
+        {
+            return BadRequest();
+        }
     }
 }

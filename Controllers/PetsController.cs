@@ -37,7 +37,8 @@ public class PetsController : ControllerBase
     public async Task<ActionResult<MyPetDto>> MyPet()
     {
         var userId = _currentUser.GetCurrentUserId();
-        var pet = await _context.Pets.Include(pet => pet.PetType)
+        var pet = await _context.Pets
+            .Include(pet => pet.PetType)
             .FirstOrDefaultAsync(p => p.UserId == userId && p.Status == Constants.StatusAlive);
 
         if (pet == null)

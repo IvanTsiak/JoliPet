@@ -45,4 +45,31 @@ public static class Functions
 
         return Math.Sign(totalWeight) * impact;
     }
+
+    public static double CalculateCombatPower(int mood, int level, double baseEquilibrium,double volatility, double emotionalInertia)
+    {
+        double harmony = 100 - Math.Abs(mood - baseEquilibrium);
+
+        if (emotionalInertia == 0)
+        {
+            emotionalInertia = 1;
+        }
+        
+        return harmony + (level * Constants.LevelMultiplier) + ((volatility / emotionalInertia) * Constants.TypeMultiplier);
+    }
+
+    public static double CalculateWinProbability(double cpAttacker, double cpDefender)
+    {
+        return 1 / (1 + Math.Exp(-Constants.BalanceCoefficient * (cpAttacker - cpDefender)));
+    }
+
+    public static int CalculateDamage(double winnerProbability, double rngModifier)
+    {
+        return (int)(Constants.MaxDamage * winnerProbability * rngModifier);
+    }
+
+    public static int CalculateHealing(double opponentDamage, double rngModifier)
+    {
+        return (int)(opponentDamage * rngModifier);
+    }
 } 

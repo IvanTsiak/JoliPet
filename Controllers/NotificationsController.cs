@@ -25,7 +25,6 @@ public class NotificationsController : ControllerBase
         var userId = _currentUser.GetCurrentUserId();
         
         var unreadNotifications = await _context.Notifications
-            .Include(n => n.User)
             .Where(n => n.UserId == userId && !n.IsRead)
             .Select(n => new NotificationDto
             {
