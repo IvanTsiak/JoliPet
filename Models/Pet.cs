@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
 using JoliPet.Shared;
 
 namespace JoliPet.Models;
@@ -31,6 +30,34 @@ public class Pet
         if (Mood <= 0)
         {
             Status = Constants.StatusDead;
+        }
+    }
+
+    public void ChangeExperience(int amount)
+    {
+        Experience += amount;
+
+        while (Experience < 0)
+        {
+            if (Level <= 1)
+            {
+                Level = 1;
+                Experience = 0;
+                break;
+            }
+
+            Level--;
+            Experience += Level * Constants.XpPerLevel;
+        }
+
+        int xpNeeded = Level * Constants.XpPerLevel;
+
+        while (Experience >= xpNeeded)
+        {
+            Experience -= xpNeeded;
+            Level++;
+            
+            xpNeeded = Level * Constants.XpPerLevel;
         }
     }
 }

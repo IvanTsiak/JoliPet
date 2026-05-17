@@ -56,6 +56,9 @@ public class BattleService : IBattleService
 
             attacker.ApplyMoodChange(attacker.Mood + healing);
             defender.ApplyMoodChange(defender.Mood - damage);
+            
+            attacker.ChangeExperience(Constants.XpForWinBattle);
+            defender.ChangeExperience(Constants.XpForLoseBattle);
         }
         else
         {
@@ -64,6 +67,9 @@ public class BattleService : IBattleService
 
             attacker.ApplyMoodChange(attacker.Mood - damage);
             defender.ApplyMoodChange(defender.Mood + healing);
+            
+            attacker.ChangeExperience(Constants.XpForLoseBattle);
+            defender.ChangeExperience(Constants.XpForWinBattle);
         }
 
         await _context.SaveChangesAsync();

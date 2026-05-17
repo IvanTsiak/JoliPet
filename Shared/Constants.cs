@@ -20,4 +20,8 @@ public static class Constants
 
     public const double RngModifierFrom = 0.5;
     public const double RngModifierTo = 1.0;
+    
+    public const int XpPerLevel = 100;
+    public const int XpForWinBattle = 15;
+    public const int XpForLoseBattle = -5;
 }
