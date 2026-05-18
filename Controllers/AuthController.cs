@@ -1,6 +1,9 @@
-﻿using JoliPet.DTOs;
+﻿using System.Security.Claims;
+using JoliPet.DTOs;
 using JoliPet.Models;
 using JoliPet.Shared;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +18,65 @@ public class AuthController : ControllerBase
     public AuthController(JoliPetContext context)
     {
         _context = context;
+    }
+
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterDto r)
+    {
+        bool emailExists = await _context.Users.AnyAsync(u => u.Email == r.Email);
+        if (emailExists)
+        {
+            return BadRequest("Email already exists");
+        }
+        
+        bool usernameExists = await _context.Users.AnyAsync(u => u.Username == r.Username);
+        if (usernameExists)
+        {
+            return BadRequest("Username already exists");
+        }
+        
+        string passwordHash = BCrypt.Net.BCrypt.HashPassword(r.Password);
+
+        var newUser = new User
+        {
+            Username = r.Email,
+            Email = r.Email,
+            Password = passwordHash
+        };
+        
+        _context.Users.Add(newUser);
+        await _context.SaveChangesAsync();
+        
+        return Ok(new { message = "User created" });
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginDto l)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == l.Email);
+
+        if (user != null && BCrypt.Net.BCrypt.Verify(l.Password, user.Password))
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            };
+            
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            
+            return Ok(new { message = "User authorized", userId = user.Id, username = user.Username });
+        }
+        
+        return Unauthorized(new  { message = "Email or password is incorrect" });
+    }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return NoContent();
     }
     
     [HttpGet("guest-info")]

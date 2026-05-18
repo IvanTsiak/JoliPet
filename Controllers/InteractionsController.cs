@@ -38,7 +38,7 @@ public class InteractionsController : ControllerBase
         }
         
         var minutesPassed = (DateTime.UtcNow - pet.LastInteractionAt).TotalMinutes;
-        double decayedMood = Functions.CalculateCurrentMood(
+        var decayedMood = Functions.CalculateCurrentMood(
             pet.Mood, minutesPassed, pet.PetType.BaseEquilibrium, 
             pet.PetType.DecayConstant, pet.PetType.CriticalThreshold, pet.PetType.CriticalDecayRate);
 
@@ -47,6 +47,7 @@ public class InteractionsController : ControllerBase
             Functions.CalculateWordImpact(totalWeight, pet.PetType.Volatility, pet.PetType.EmotionalInertia);
         
         pet.ApplyMoodChange(decayedMood + moodChange);
+        pet.ChangeExperience(totalWeight);
         await  _context.SaveChangesAsync();
 
         var result = new MyPetDto
