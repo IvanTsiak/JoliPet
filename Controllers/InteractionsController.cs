@@ -14,13 +14,15 @@ public class InteractionsController : ControllerBase
     private readonly JoliPetContext _context;
     private readonly ICurrentUserService _currentUser;
     private readonly IMessageAnalyzerService _messageAnalyzer;
+    private readonly IPetService _petService;
 
     public InteractionsController(JoliPetContext context, ICurrentUserService currentUser,
-        IMessageAnalyzerService messageAnalyzer)
+        IMessageAnalyzerService messageAnalyzer,  IPetService petService)
     {
         _context = context;
         _currentUser = currentUser;
         _messageAnalyzer = messageAnalyzer;
+        _petService = petService;
     }
     
     [HttpPost("{id}/talk")]
@@ -46,8 +48,9 @@ public class InteractionsController : ControllerBase
         var moodChange =
             Functions.CalculateWordImpact(totalWeight, pet.PetType.Volatility, pet.PetType.EmotionalInertia);
         
-        pet.ApplyMoodChange(decayedMood + moodChange);
-        pet.ChangeExperience(totalWeight);
+        await _petService.UpdateMoodAsync(pet, (int)(decayedMood + moodChange));
+        await _petService.UpdateExperienceAsync(pet, totalWeight);
+        
         await  _context.SaveChangesAsync();
 
         var result = new MyPetDto

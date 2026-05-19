@@ -13,10 +13,16 @@ public class PetsController : ControllerBase
 {
     private readonly JoliPetContext _context;
     private readonly ICurrentUserService _currentUser;
-    public PetsController(JoliPetContext context,  ICurrentUserService currentUser)
+    private readonly INotificationService _notificationService;
+    private readonly IPetService _petService;
+    
+    public PetsController(JoliPetContext context,  ICurrentUserService currentUser,
+        INotificationService notificationService, IPetService petService)
     {
         _context = context;
         _currentUser = currentUser;
+        _notificationService = notificationService;
+        _petService = petService;
     }
 
     [HttpGet("types")]
@@ -55,7 +61,7 @@ public class PetsController : ControllerBase
             pet.PetType.CriticalThreshold, 
             pet.PetType.CriticalDecayRate);
 
-        pet.ApplyMoodChange(currentMood);
+        await _petService.UpdateMoodAsync(pet, (int)currentMood);
         await _context.SaveChangesAsync();
 
         var result = new MyPetDto
@@ -100,6 +106,9 @@ public class PetsController : ControllerBase
         
         _context.Pets.Add(newPet);
         await _context.SaveChangesAsync();
+        
+        string message = $"Your pet has been created {newPet.Name} ({newPet.PetType.Name})";
+        await _notificationService.AddNotificationAsync(userId, message);
 
         return NoContent();
     }

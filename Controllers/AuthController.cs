@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using JoliPet.DTOs;
 using JoliPet.Models;
+using JoliPet.Services;
 using JoliPet.Shared;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,10 +15,12 @@ namespace JoliPet.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly JoliPetContext _context;
+    private readonly ICurrentUserService _currentUserService;
     
-    public AuthController(JoliPetContext context)
+    public AuthController(JoliPetContext context,  ICurrentUserService currentUserService)
     {
         _context = context;
+        _currentUserService = currentUserService;
     }
 
     [HttpPost("register")]
@@ -77,6 +80,28 @@ public class AuthController : ControllerBase
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return NoContent();
+    }
+
+    [HttpGet("whoami")]
+    public async Task<ActionResult<WhoAmIDto>> WhoAmI()
+    {
+        var userId = _currentUserService.GetCurrentUserId();
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+        if (user == null)
+        {
+            return Unauthorized(new { message = "User not found" });
+        }
+        
+        var result = new WhoAmIDto
+        {
+            Id = user.Id,
+            Name = user.Username,
+            Email = user.Email
+        };
+        
+        return Ok(result);
+
     }
     
     [HttpGet("guest-info")]

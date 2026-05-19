@@ -14,12 +14,15 @@ public class BattlesController : ControllerBase
     private readonly JoliPetContext _context;
     private readonly ICurrentUserService _currentUser;
     private readonly IBattleService _battleService;
+    private readonly INotificationService _notificationService;
     
-    public  BattlesController(JoliPetContext context,  ICurrentUserService currentUser,  IBattleService battleService)
+    public  BattlesController(JoliPetContext context, ICurrentUserService currentUser,
+        IBattleService battleService, INotificationService  notificationService) 
     {
         _context = context;
         _currentUser = currentUser;
         _battleService = battleService;
+        _notificationService = notificationService;
     }
 
     [HttpGet("targets")]
@@ -53,18 +56,23 @@ public class BattlesController : ControllerBase
     }
 
     [HttpPost("{id}/attack")]
-    public async Task<ActionResult<BattleResultDto>> Attack([FromRoute] int defenderPetId)
+    public async Task<ActionResult<BattleResultDto>> Attack([FromRoute] int id)
     {
         try
         {
             var userId = _currentUser.GetCurrentUserId();
-            var result = await _battleService.ExecuteBattleAsync(userId, defenderPetId);
+            var result = await _battleService.ExecuteBattleAsync(userId, id);
+
+            string message = result.IsWinner ? $"Your pet defeated {result.DefenderPetName}, {result.DefenderUserName}'s pet!"
+                : $"Your pet lost to {result.DefenderPetName}, {result.DefenderUserName}'s pet!";
+
+            await _notificationService.AddNotificationAsync(userId, message);
 
             return Ok(result);
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException ex)
         {
-            return BadRequest();
+            return BadRequest(new { message = ex.Message });
         }
     }
 }
