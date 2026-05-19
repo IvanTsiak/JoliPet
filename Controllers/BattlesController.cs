@@ -61,6 +61,7 @@ public class BattlesController : ControllerBase
         try
         {
             var userId = _currentUser.GetCurrentUserId();
+            
             var result = await _battleService.ExecuteBattleAsync(userId, id);
 
             string message = result.IsWinner ? $"Your pet defeated {result.DefenderPetName}, {result.DefenderUserName}'s pet!"

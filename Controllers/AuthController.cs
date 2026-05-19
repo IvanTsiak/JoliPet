@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
 
         var newUser = new User
         {
-            Username = r.Email,
+            Username = r.Username,
             Email = r.Email,
             Password = passwordHash
         };

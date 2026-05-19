@@ -16,22 +16,22 @@ public class BattleService : IBattleService
         _petService = petService;
     }
 
-    public async Task<BattleResultDto> ExecuteBattleAsync(int attackerId, int defenderId)
+    public async Task<BattleResultDto> ExecuteBattleAsync(int attackerUserId, int defenderId)
     {
-        if (attackerId == defenderId)
+        var attacker = await _context.Pets
+            .Include(p => p.PetType)
+            .FirstOrDefaultAsync(p => p.UserId == attackerUserId && p.Status == Constants.StatusAlive);
+        
+        if (attacker == null || attacker.Id == defenderId)
         {
             throw new InvalidOperationException();
         }
-
-        var attacker = await _context.Pets
-            .Include(p => p.PetType)
-            .FirstOrDefaultAsync(p => p.Id == attackerId && p.Status == Constants.StatusAlive);
 
         var defender = await _context.Pets
             .Include(p => p.PetType).Include(pet => pet.User)
             .FirstOrDefaultAsync(p => p.Id == defenderId && p.Status == Constants.StatusAlive);
 
-        if (attacker == null || defender == null)
+        if (defender == null)
         {
             throw new InvalidOperationException();
         }
@@ -56,7 +56,7 @@ public class BattleService : IBattleService
             healing = Functions.CalculateHealing(damage, rngModifier);
 
             await _petService.UpdateMoodAsync(attacker, attacker.Mood + healing);
-            await _petService.UpdateMoodAsync(defender, attacker.Mood - damage);
+            await _petService.UpdateMoodAsync(defender, defender.Mood - damage);
             
             await _petService.UpdateExperienceAsync(attacker, Constants.XpForWinBattle);
             await _petService.UpdateExperienceAsync(defender, Constants.XpForLoseBattle);

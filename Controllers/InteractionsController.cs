@@ -25,14 +25,14 @@ public class InteractionsController : ControllerBase
         _petService = petService;
     }
     
-    [HttpPost("{id}/talk")]
-    public async Task<ActionResult<MyPetDto>> TalkToPet([FromRoute] int id, [FromBody] MessageDto m)
+    [HttpPost("talk")]
+    public async Task<ActionResult<MyPetDto>> TalkToPet([FromBody] MessageDto m)
     {
         var userId = _currentUser.GetCurrentUserId();
 
         var pet = await _context.Pets
             .Include(pet => pet.PetType)
-            .FirstOrDefaultAsync(p => p.Id == id && p.UserId == userId && p.Status == Constants.StatusAlive);
+            .FirstOrDefaultAsync(p => p.UserId == userId && p.Status == Constants.StatusAlive);
 
         if (pet == null)
         {

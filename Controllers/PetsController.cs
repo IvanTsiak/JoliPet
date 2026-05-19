@@ -74,6 +74,7 @@ public class PetsController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost]
     public async Task<IActionResult> CreatePet([FromBody] CreatePetDto petDto)
     {
         var userId = _currentUser.GetCurrentUserId();
@@ -113,12 +114,12 @@ public class PetsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPost("{id}/abandon")]
-    public async Task<IActionResult> AbandonPet([FromRoute] int id)
+    [HttpPost("abandon")]
+    public async Task<IActionResult> AbandonPet()
     {
         var userId = _currentUser.GetCurrentUserId();
         var pet = await _context.Pets
-            .FirstOrDefaultAsync(p => p.Id == id && p.UserId == userId);
+            .FirstOrDefaultAsync(p => p.UserId == userId);
 
         if (pet == null)
         {
