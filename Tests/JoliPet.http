@@ -81,5 +81,5 @@ GET {{api}}/Notifications
 Accept: application/json
 
 ###
-POST {{api}}/Notifications/3/read
+POST {{api}}/Notifications/1002/read
 Accept: application/json

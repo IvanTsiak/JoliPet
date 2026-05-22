@@ -102,7 +102,7 @@ public class PetsController : ControllerBase
             Mood = (int)petType.BaseEquilibrium,
             Status = Constants.StatusAlive,
             
-            LastInteractionAt = DateTime.UtcNow,
+            LastInteractionAt = DateTime.UtcNow
         };
         
         _context.Pets.Add(newPet);
