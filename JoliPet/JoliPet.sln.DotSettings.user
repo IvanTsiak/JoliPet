@@ -1,0 +1,27 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AObject_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003FUsers_003FACER_003FAppData_003FRoaming_003FJetBrains_003FRider2026_002E1_003Fresharper_002Dhost_003FSourcesCache_003F9a6b1457cbcf17db31a383ba49ef9bcc786cf3ef77146d997eee499b27a46d_003FObject_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=172a1b8d_002Da1c5_002D4eba_002Da31f_002D829c582be201/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::0DA18EEA-A945-4945-BCC2-AE275A15ED3A::net10.0::JoliPet.Tests.UnitTest1.CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2afb431e_002Da2a2_002D4cb3_002Db42b_002De200a0621dd5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::0F527ACD-366C-4416-8D6E-4F06DB0B1500::net10.0::JoliPet.Tests.FunctionsTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=302f05e1_002D4567_002D45d8_002D9e2a_002Dfce1f7512799/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::0DA18EEA-A945-4945-BCC2-AE275A15ED3A::net10.0::JoliPet.Tests.UnitTest1.CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=391b12ff_002D4aff_002D4d2a_002D93f6_002D2bf3c0429343/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::0DA18EEA-A945-4945-BCC2-AE275A15ED3A::net10.0::JoliPet.Tests.UnitTest1.CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8c85e2c7_002Defb0_002D414b_002D8616_002D40d3bb2459de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::0DA18EEA-A945-4945-BCC2-AE275A15ED3A::net10.0::JoliPet.Tests.UnitTest1.CalculateDamage_ShouldReturnZero_WhenProbabilityIsZero&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
