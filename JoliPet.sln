@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoliPet", "JoliPet.csproj", "{438C9993-4754-4A05-8819-443E2AF4A9F2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5706C921-45D7-4A44-AA79-C4B3796981D7}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoliPet.Tests", "..\JoliPet.Tests\JoliPet.Tests.csproj", "{0F527ACD-366C-4416-8D6E-4F06DB0B1500}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoliPet", "JoliPet\JoliPet.csproj", "{6832DBFB-5FBB-48C4-952D-DBECC17D1373}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoliPet.Tests", "JoliPet.Tests\JoliPet.Tests.csproj", "{5F155525-0169-458E-A815-61CD9F951D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,13 +15,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{438C9993-4754-4A05-8819-443E2AF4A9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{438C9993-4754-4A05-8819-443E2AF4A9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{438C9993-4754-4A05-8819-443E2AF4A9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{438C9993-4754-4A05-8819-443E2AF4A9F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6832DBFB-5FBB-48C4-952D-DBECC17D1373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6832DBFB-5FBB-48C4-952D-DBECC17D1373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6832DBFB-5FBB-48C4-952D-DBECC17D1373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6832DBFB-5FBB-48C4-952D-DBECC17D1373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F155525-0169-458E-A815-61CD9F951D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F155525-0169-458E-A815-61CD9F951D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F155525-0169-458E-A815-61CD9F951D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F155525-0169-458E-A815-61CD9F951D57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
