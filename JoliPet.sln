@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		compose.yaml = compose.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoliPet.Tests", "JoliPet.Tests\JoliPet.Tests.csproj", "{0DA18EEA-A945-4945-BCC2-AE275A15ED3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoliPet.Tests", "..\JoliPet.Tests\JoliPet.Tests.csproj", "{0F527ACD-366C-4416-8D6E-4F06DB0B1500}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +19,9 @@ Global
 		{438C9993-4754-4A05-8819-443E2AF4A9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438C9993-4754-4A05-8819-443E2AF4A9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438C9993-4754-4A05-8819-443E2AF4A9F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DA18EEA-A945-4945-BCC2-AE275A15ED3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DA18EEA-A945-4945-BCC2-AE275A15ED3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DA18EEA-A945-4945-BCC2-AE275A15ED3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DA18EEA-A945-4945-BCC2-AE275A15ED3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F527ACD-366C-4416-8D6E-4F06DB0B1500}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
