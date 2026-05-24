@@ -1,4 +1,7 @@
-﻿using JoliPet.Models;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using JoliPet.Models;
 using JoliPet.Shared;
 using Microsoft.EntityFrameworkCore;
 

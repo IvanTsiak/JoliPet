@@ -1,6 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8ad1b477_002D429e_002D4636_002Dba43_002D4a1e1e15522d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CalculateWordImpact_ShouldReturnNegaive_WhenWeightIsNegative" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f262fa67_002Df8b4_002D4110_002D9f8a_002D9c598fb10bad/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CalculateMessageWeightAsync_ShouldReturnCorrectWeight" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::5F155525-0169-458E-A815-61CD9F951D57::net10.0::JoliPet.Tests.FunctionsTest.CalculateWordImpact_ShouldReturnNegaive_WhenWeightIsNegative&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5F155525-0169-458E-A815-61CD9F951D57::net10.0::JoliPet.Tests.MessageAnalyzerServiceTest.CalculateMessageWeightAsync_ShouldReturnCorrectWeight&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5F155525-0169-458E-A815-61CD9F951D57::net10.0::JoliPet.Tests.MessageAnalyzerServiceTest.CalculateMessageWeightAsync_ShouldCountGood&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::5F155525-0169-458E-A815-61CD9F951D57::net10.0::JoliPet.Tests.PetServiceTests.UpdateExperienceAsync_ShouldLevelUpAndNotify_WhenEnoughXpGained&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
