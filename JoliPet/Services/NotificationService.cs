@@ -48,7 +48,7 @@ public class NotificationService : INotificationService
             .OrderByDescending(n => n.CreatedAt)
             .Skip(Constants.MaxNotificationsPerUser)
             .ToListAsync();
-
+        
         if (excessNotifications.Count > 0)
         {
             _context.Notifications.RemoveRange(excessNotifications);

@@ -69,6 +69,8 @@ public class PetsController : ControllerBase
             Id = pet.Id,
             Name = pet.Name,
             Mood = pet.Mood,
+            Level = pet.Level,
+            Experience = pet.Experience
         };
 
         return Ok(result);
