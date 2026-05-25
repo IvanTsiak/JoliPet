@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JoliPet</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            max-width: 400px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            max-width: 430px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>JoliPet smth</h1>
+        <button onclick="logout()" style="height: 30px; margin-top: 20px;">Logout</button>
+    </div>
+
+    <div class="card">
+        <h3>My pet</h3>
+        <p><strong>Name:</strong> <span id="pet-name">IDK his/her name...</span></p>
+        <p><strong>Mood:</strong> <span id="pet-mood">-</span></p>
+        <p><strong>Level:</strong> <span id="pet-level">-</span></p>
+        <p><strong>Xp:</strong> <span id="pet-xp">-</span></p>
+    </div>
+
+    <div class="card">
+        <h3>Battles</h3>
+        <select id="defender-id">
+            <option value="">Choose your opponent...</option>
+        </select>
+        <button onclick="attack()">Attack!</button>
+        
+        <p id="battle-result" style="color: blue; font-weight: bold;"></p>
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
