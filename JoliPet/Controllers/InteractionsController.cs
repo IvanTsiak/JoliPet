@@ -26,7 +26,7 @@ public class InteractionsController : ControllerBase
     }
     
     [HttpPost("talk")]
-    public async Task<ActionResult<MyPetDto>> TalkToPet([FromBody] MessageDto m)
+    public async Task<ActionResult<TalkDto>> TalkToPet([FromBody] MessageDto m)
     {
         var userId = _currentUser.GetCurrentUserId();
 
@@ -53,11 +53,10 @@ public class InteractionsController : ControllerBase
         
         await  _context.SaveChangesAsync();
 
-        var result = new MyPetDto
+        var result = new TalkDto
         {
-            Id = pet.Id,
-            Name = pet.Name,
-            Mood = pet.Mood,
+            MoodChange = (int)moodChange,
+            XpGained = totalWeight
         };
         
         return Ok(result);

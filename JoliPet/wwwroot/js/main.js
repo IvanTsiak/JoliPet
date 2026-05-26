@@ -68,6 +68,39 @@ function attack() {
     .catch(error => console.error("Error: ", error));
 }
 
+function talk() {
+    const messageInput = document.getElementById("chat-message");
+    const messageText = messageInput.value.trim();
+    
+    if (!messageText) {
+        alert("Please enter a message");
+        return;
+    }
+    
+    fetch('/api/Interactions/talk', {
+        'method': 'POST',
+        'headers': {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: messageText })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to send message");
+            }
+            return response.json();
+        })
+        .then(result => {
+            messageInput.value = "";
+            
+            document.getElementById('chat-result').innerText = 
+                `Mood: ${result.moodChange}, XP: ${result.xpGained}`;
+            
+            loadMyPet();
+        })
+        .catch(error => console.error("Error: ", error));
+}
+
 function logout() {
     fetch(`/api/Auth/logout`, { method: 'POST' })
         .then(() => {
