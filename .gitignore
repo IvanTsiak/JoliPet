@@ -23,3 +23,4 @@ bld/
 *.sln.docstates
 
 TestResults/
+JoliPet/appsettings.json
